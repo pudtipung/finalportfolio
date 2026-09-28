@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio & Resume | พุฒิพงศ์ มูลชารี (ม่อน)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#050811',
+                        darkCard: '#0d1527',
+                        darkBorder: '#1e293b',
+                        brandBlue: '#2563eb',
+                        vibrantBlue: '#3b82f6',
+                        neonCyan: '#38bdf8'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for deep blue theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050811;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(37, 99, 235, 0.45);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Smooth Page Transition Animations */
+        @keyframes pageFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pageFadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+        .page-fade-in {
+            animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .page-fade-out {
+            animation: pageFadeOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 font-sans min-h-screen flex flex-col selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
+
+    <!-- Top Progress Bar Loader -->
+    <div id="top-loader" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-blue-600 via-cyan-400 to-sky-300 z-[100] w-0 opacity-0 pointer-events-none transition-all duration-300 ease-out shadow-[0_0_14px_#38bdf8]"></div>
+
+    <!-- Page Transition Loading Overlay -->
+    <div id="page-loader" class="fixed inset-0 z-[99] flex flex-col items-center justify-center bg-[#050811]/75 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200">
+        <div class="relative flex items-center justify-center">
+            <div class="w-14 h-14 rounded-full border-2 border-blue-500/20 border-t-cyan-400 animate-spin"></div>
+            <div class="w-8 h-8 rounded-full border-2 border-blue-400/20 border-b-blue-500 animate-spin absolute" style="animation-direction: reverse; animation-duration: 0.8s;"></div>
+            <div class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_14px_#38bdf8] absolute"></div>
+        </div>
+        <p class="mt-4 text-xs font-semibold text-slate-200 tracking-wider flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>กำลังโหลด...</span>
+        </p>
+    </div>
+
+    <!-- Ambient glowing backgrounds -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-1/4 w-[28rem] h-[28rem] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#050811]/85 backdrop-blur-xl border-b border-blue-900/30 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" onclick="event.preventDefault(); switchPage('home')" class="group flex items-center space-x-3 text-slate-100 hover:text-white transition-all">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-cyan-400 p-[1.5px] shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all">
+                    <div class="w-full h-full bg-[#070d1d] rounded-[10px] flex items-center justify-center font-bold text-blue-400 group-hover:text-white transition-colors">
+                        P
+                    </div>
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-wide text-white block">PORTFOLIO</span>
+                    <span class="text-[10px] text-blue-400/80 uppercase tracking-widest block -mt-1 font-semibold">Dev & Designer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-1.5 p-1.5 bg-[#0a1224]/80 border border-blue-900/40 rounded-full shadow-inner">
+                <button onclick="switchPage('home')" data-target="home" class="nav-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-blue-600/20">
+                    <i class="fa-solid fa-house-chimney mr-1.5 text-xs"></i> หน้าแรก (Home)
+                </button>
+                <button onclick="switchPage('education')" data-target="education" class="nav-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-blue-600/20">
+                    <i class="fa-solid fa-graduation-cap mr-1.5 text-xs"></i> การศึกษา (Education)
+                </button>
+                <button onclick="switchPage('portfolio')" data-target="portfolio" class="nav-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-blue-600/20">
+                    <i class="fa-solid fa-briefcase mr-1.5 text-xs"></i> ผลงาน (Portfolio)
+                </button>
+                <button onclick="switchPage('activity')" data-target="activity" class="nav-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-blue-600/20">
+                    <i class="fa-solid fa-award mr-1.5 text-xs"></i> กิจกรรม (Activity)
+                </button>
+                <button onclick="switchPage('contact')" data-target="contact" class="nav-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-blue-600/20">
+                    <i class="fa-solid fa-envelope mr-1.5 text-xs"></i> ติดต่อ (Contact)
+                </button>
+            </nav>
+
+            <!-- CTA Button on Header -->
+            <div class="hidden lg:flex items-center">
+                <button onclick="switchPage('contact')" class="px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-cyan-500 text-white shadow-md shadow-blue-600/30 hover:shadow-blue-500/50 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-paper-plane mr-2"></i>จ้างงาน / ติดต่อ
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <div class="flex items-center md:hidden">
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-blue-950/40 border border-blue-900/40 text-blue-400 hover:text-white focus:outline-none transition-colors">
+                    <i class="fa-solid fa-bars-staggered text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#070f22]/95 backdrop-blur-2xl border-b border-blue-900/40 py-4 px-6 transition-all">
+            <div class="flex flex-col space-y-2">
+                <button onclick="switchPage('home'); toggleMobileMenu();" data-target="home" class="mobile-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-blue-600/20 hover:text-cyan-400 transition-colors">
+                    <i class="fa-solid fa-house-chimney w-6 text-blue-400"></i> หน้าแรก (Home)
+                </button>
+                <button onclick="switchPage('education'); toggleMobileMenu();" data-target="education" class="mobile-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-blue-600/20 hover:text-cyan-400 transition-colors">
+                    <i class="fa-solid fa-graduation-cap w-6 text-blue-400"></i> ประวัติการศึกษา (Education)
+                </button>
+                <button onclick="switchPage('portfolio'); toggleMobileMenu();" data-target="portfolio" class="mobile-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-blue-600/20 hover:text-cyan-400 transition-colors">
+                    <i class="fa-solid fa-briefcase w-6 text-blue-400"></i> ผลงานทั้งหมด (Portfolio)
+                </button>
+                <button onclick="switchPage('activity'); toggleMobileMenu();" data-target="activity" class="mobile-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-blue-600/20 hover:text-cyan-400 transition-colors">
+                    <i class="fa-solid fa-award w-6 text-blue-400"></i> กิจกรรมและอบรม (Activity)
+                </button>
+                <button onclick="switchPage('contact'); toggleMobileMenu();" data-target="contact" class="mobile-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-blue-600/20 hover:text-cyan-400 transition-colors">
+                    <i class="fa-solid fa-envelope w-6 text-blue-400"></i> ข้อมูลติดต่อ (Contact)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container with Router Pages -->
+    <main class="flex-grow pt-24 pb-16">
+
+        <section id="page-home" class="page-section max-w-7xl mx-auto px-6 sm:px-8 py-8 animate-fadeIn">
+            <!-- Hero Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[72vh]">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-blue-950/70 border border-blue-600/40 text-blue-300 text-xs font-medium tracking-wide shadow-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span class="relative">พร้อมเปิดรับงาน & ร่วมงานใหม่</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                        สวัสดีครับ ผมชื่อ <br class="hidden sm:block">
+                        <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-blue-600 bg-clip-text text-transparent">พุฒิพงศ์ มูลชารี</span>
+                    </h1>
+
+                    <p class="text-slate-400 text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        มุ่งมั่นพัฒนาระบบเว็บไซต์และแอปพลิเคชันที่มีประสิทธิภาพสูง สวยงาม เรียบง่าย 
+                        และออกแบบให้ผู้ใช้งานเข้าถึงข้อมูลได้อย่างรวดเร็วและปลอดภัย พร้อมนำเทคโนโลยีสมัยใหม่มาสร้างสรรค์ผลงานคุณภาพ
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <button onclick="switchPage('portfolio')" class="px-7 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/40 hover:shadow-blue-500/60 transition-all transform hover:-translate-y-0.5 flex items-center space-x-2">
+                            <span>ชมผลงานทั้งหมด</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                        <button onclick="switchPage('contact')" class="px-7 py-3.5 rounded-2xl bg-[#0d162d] hover:bg-[#152345] text-blue-300 hover:text-white border border-blue-800/60 font-medium text-sm transition-all flex items-center space-x-2">
+                            <i class="fa-regular fa-comment-dots"></i>
+                            <span>พูดคุยกับผม</span>
+                        </button>
+                        <a href="#contact" onclick="alert('ดาวน์โหลดเรซูเม่สำเร็จ (ไฟล์ตัวอย่าง)')" class="px-5 py-3.5 rounded-2xl bg-slate-900/60 hover:bg-slate-800 text-slate-300 text-sm border border-slate-700/50 transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-download text-xs text-cyan-400"></i>
+                            <span>Resume</span>
+                        </a>
+                    </div>
+
+                    <!-- Highlights Stat Badge -->
+                    <div class="pt-8 border-t border-blue-900/40 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+                        <div class="p-3 bg-blue-950/20 border border-blue-900/30 rounded-2xl text-center">
+                            <h4 class="text-2xl font-bold text-white">1+</h4>
+                            <p class="text-xs text-blue-400 mt-1 font-medium">ปีแห่งประสบการณ์</p>
+                        </div>
+                        <div class="p-3 bg-blue-950/20 border border-blue-900/30 rounded-2xl text-center">
+                            <h4 class="text-2xl font-bold text-white">2</h4>
+                            <p class="text-xs text-blue-400 mt-1 font-medium">โปรเจกต์สำเร็จ</p>
+                        </div>
+                        <div class="p-3 bg-blue-950/20 border border-blue-900/30 rounded-2xl text-center">
+                            <h4 class="text-2xl font-bold text-white">100%</h4>
+                            <p class="text-xs text-blue-400 mt-1 font-medium">ความพึงพอใจ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Photo Area with Blue Glow -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-300"></div>
+                        <div class="relative w-72 h-80 sm:w-80 sm:h-96 rounded-3xl bg-[#091124] border-2 border-blue-500/40 overflow-hidden shadow-2xl p-2.5">
+                            <img src="Im/profile.jpg" 
+                                 alt="Profile Picture" 
+                                 class="w-full h-full object-cover rounded-2xl filter saturate-[1.1] contrast-105"
+                                 onerror="this.src='https://placehold.co/400x500/0a1530/60a5fa?text=My+Photo'">
+                            <div class="absolute bottom-5 left-5 right-5 bg-[#050b18]/90 backdrop-blur-md p-3.5 rounded-2xl border border-blue-500/30 text-center">
+                                <p class="text-xs font-bold text-white tracking-wide">พุฒิพงศ์ มูลชารี</p>
+                                <p class="text-[11px] text-cyan-400">Tech Enthusiast</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Cards -->
+            <div class="mt-24 pt-12 border-t border-blue-950/60">
+                <div class="text-center max-w-xl mx-auto mb-12">
+                    <span class="text-xs font-semibold text-cyan-400 uppercase tracking-widest">Skill Sets</span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mt-1">ทักษะและความสามารถหลัก</h3>
+                    <p class="text-slate-400 text-sm mt-2">เทคโนโลยีที่เชี่ยวชาญและนำมาใช้ในการพัฒนาซอฟต์แวร์</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-2xl bg-[#091124] border border-blue-900/40 hover:border-blue-500/50 hover:bg-[#0d1833] transition-all glow-hover text-center group">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-900/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform mb-4">
+                            <i class="fa-brands fa-react text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white">Frontend Dev</h4>
+                        <p class="text-xs text-slate-400 mt-1">React, Next.js, Tailwind CSS</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-[#091124] border border-blue-900/40 hover:border-blue-500/50 hover:bg-[#0d1833] transition-all glow-hover text-center group">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-900/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform mb-4">
+                            <i class="fa-solid fa-server text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white">Backend & API</h4>
+                        <p class="text-xs text-slate-400 mt-1">Node.js, Express, REST APIs</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-[#091124] border border-blue-900/40 hover:border-blue-500/50 hover:bg-[#0d1833] transition-all glow-hover text-center group">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-900/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform mb-4">
+                            <i class="fa-solid fa-database text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white">Database</h4>
+                        <p class="text-xs text-slate-400 mt-1">PostgreSQL, MongoDB, Supabase</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-[#091124] border border-blue-900/40 hover:border-blue-500/50 hover:bg-[#0d1833] transition-all glow-hover text-center group">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-900/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform mb-4">
+                            <i class="fa-solid fa-compass-drafting text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white">UI/UX Design</h4>
+                        <p class="text-xs text-slate-400 mt-1">Figma, Wireframing, Prototype</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-education" class="page-section max-w-5xl mx-auto px-6 sm:px-8 py-8 hidden animate-fadeIn">
+            <!-- Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="px-4 py-1 rounded-full bg-blue-950/70 border border-blue-600/40 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                    Education Journey
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4 tracking-tight">ประวัติการศึกษาทุกระดับ</h2>
+                <p class="text-slate-400 text-sm mt-3">เส้นทางการศึกษาเพื่อสั่งสมองค์ความรู้และทักษะด้านเทคโนโลยีสารสนเทศ</p>
+            </div>
+
+            <!-- Education Timeline Cards -->
+            <div class="relative border-l-2 border-blue-900/60 ml-4 sm:ml-32 space-y-12">
+                <!-- Level 3: Higher Education (Bachelor) -->
+                <div class="relative pl-8 sm:pl-10">
+                    <!-- Icon node on line -->
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-blue-600 border-4 border-[#050811] flex items-center justify-center text-white text-xs shadow-lg shadow-blue-500/50">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <!-- Time tag on desktop left -->
+                    <span class="sm:absolute sm:-left-32 sm:top-2 text-xs font-bold text-blue-400 uppercase tracking-wider mb-2 block sm:mb-0">
+                        2024 - Present
+                    </span>
+                    <!-- Content Card -->
+                    <div class="p-7 rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="text-xl font-bold text-white">ระดับปริญญาตรี (Bachelor's Degree)</h3>
+                            
+                        </div>
+                        <h4 class="text-blue-300 font-medium text-sm mb-3">
+                            <i class="fa-solid fa-building-columns mr-2 text-blue-400"></i>มหาวิทยาลัยมหาสารคาม (Mahasarakham University)
+                        </h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            สาขาสื่อนฤมิต (Creative Media)
+                    
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Level 2: High School -->
+                <div class="relative pl-8 sm:pl-10">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-slate-800 border-4 border-[#050811] flex items-center justify-center text-blue-400 text-xs shadow-md">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+                    <span class="sm:absolute sm:-left-32 sm:top-2 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block sm:mb-0">
+                        2018 - 2023
+                    </span>
+                    <div class="p-7 rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="text-xl font-bold text-white">ระดับมัธยมต้นและระดับมัธยมศึกษาตอนปลาย (High School)</h3>
+                            <span class="px-3.5 py-1 rounded-full bg-slate-800/80 text-blue-300 border border-slate-700 text-xs font-medium">GPA 3.16</span>
+                        </div>
+                        <h4 class="text-blue-300 font-medium text-sm mb-3">
+                            <i class="fa-solid fa-landmark mr-2 text-blue-400"></i>โรงเรียนเสลภูมิพิทยาคม(Selaphum Phitthayakhom School)
+                        </h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            สายการเรียนศิลปะและเทคโนโลยี
+                            เริ่มเขียนโปรแกรมภาษา Python 
+                        </p>
+                        
+                    </div>
+                </div>
+
+                <!-- Level 1: Primary & Junior High School -->
+                <div class="relative pl-8 sm:pl-10">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-slate-800 border-4 border-[#050811] flex items-center justify-center text-blue-400 text-xs shadow-md">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <span class="sm:absolute sm:-left-32 sm:top-2 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block sm:mb-0">
+                        2012 - 2017
+                    </span>
+                    <div class="p-7 rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="text-xl font-bold text-white">ระดับประถมศึกษา</h3>
+                            <span class="px-3.5 py-1 rounded-full bg-slate-800/80 text-blue-300 border border-slate-700 text-xs font-medium">GPA 4.00</span>
+                        </div>
+                        <h4 class="text-blue-300 font-medium text-sm mb-3">
+                            <i class="fa-solid fa-school-flag mr-2 text-blue-400"></i>โรงเรียนศรีอรุณวิทเสลภูมิ (Sri Arunwit Selaphum School)
+                        </h4>
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-portfolio" class="page-section max-w-7xl mx-auto px-6 sm:px-8 py-8 hidden animate-fadeIn">
+            <!-- Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="px-4 py-1 rounded-full bg-blue-950/70 border border-blue-600/40 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                    Showcase
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4 tracking-tight">ผลงานและโปรเจกต์ที่ภาคภูมิใจ</h2>
+                <p class="text-slate-400 text-sm mt-3">รวมผลงานการออกแบบ UI/UX และระบบเว็บแอปพลิเคชันที่พร้อมใช้งานจริง</p>
+
+                <!-- Filter Categories -->
+                <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+                    <button onclick="filterPortfolio('all')" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-blue-600 text-white transition-all">ทั้งหมด (All)</button>
+                    <button onclick="filterPortfolio('webapp')" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-[#0a1428] text-slate-400 hover:text-white border border-blue-900/50 transition-all">Game Development</button>
+                    <button onclick="filterPortfolio('mobile')" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-[#0a1428] text-slate-400 hover:text-white border border-blue-900/50 transition-all">Web Development</button>
+                    <button onclick="filterPortfolio('dashboard')" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-[#0a1428] text-slate-400 hover:text-white border border-blue-900/50 transition-all">Creative Media</button>
+                </div>
+            </div>
+
+            <!-- Portfolio Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card webapp rounded-3xl overflow-hidden bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover flex flex-col group">
+                    <div class="relative h-56 overflow-hidden bg-slate-900">
+                        <img src="Im/game.jpg" 
+                             alt="E-Commerce App" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#091124] via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 right-4 px-3 py-1 bg-blue-950/80 backdrop-blur-md border border-blue-500/30 text-cyan-300 rounded-full text-xs font-medium">
+                            Game Development
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Game Development Projects</h3>
+                        <p class="text-slate-400 text-sm mt-2 mb-4 flex-grow leading-relaxed">
+                            เกมยิงไก่ที่สร้างมาเพื่อคลายเครียด
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-900 text-xs">C#</span>
+                            <span class="px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-900 text-xs">Visual Studio</span>
+                            <span class="px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-900 text-xs">Game Development</span>
+                            <span class="px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-900 text-xs">2D Game</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a href="#contact" onclick="event.preventDefault(); switchPage('contact')" class="flex-1 py-2.5 text-center rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs shadow-md shadow-blue-600/30 transition-all">
+                                <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> ดูรายละเอียด
+                            </a>
+                            <a href="https://github.com" target="_blank" class="p-2.5 rounded-xl bg-[#0d1730] border border-blue-900/60 text-slate-300 hover:text-white hover:border-blue-500 transition-all text-xs">
+                                <i class="fa-brands fa-github text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card dashboard rounded-3xl overflow-hidden bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover flex flex-col group">
+                    <div class="relative h-56 overflow-hidden bg-slate-900">
+                        <img src="Im/tiktok.jpg" 
+                             alt="Analytics Dashboard" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#091124] via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 right-4 px-3 py-1 bg-blue-950/80 backdrop-blur-md border border-blue-500/30 text-cyan-300 rounded-full text-xs font-medium">
+                            Short-Form Video
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Silp Sue Panitthan — TikTok Short Video</h3>
+                        <p class="text-slate-400 text-sm mt-2 mb-4 flex-grow leading-relaxed">
+                            วิดีโอสั้นสำหรับ TikTok ถ่ายทอดแนวคิดการสืบสานศิลปะและวัฒนธรรมไทย ผ่านเรื่องราว “ศิลป์สืบปณิธาน แม่แห่งแผ่นดิน”
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-900 text-xs">Video Editings</span>
+                            <span class="px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-900 text-xs">Creative Media</span>
+                            <span class="px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-900 text-xs">Premiere Pro</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a href="#contact" onclick="event.preventDefault(); switchPage('contact')" class="flex-1 py-2.5 text-center rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs shadow-md shadow-blue-600/30 transition-all">
+                                <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> ดูรายละเอียด
+                            </a>
+                            <a href="https://github.com" target="_blank" class="p-2.5 rounded-xl bg-[#0d1730] border border-blue-900/60 text-slate-300 hover:text-white hover:border-blue-500 transition-all text-xs">
+                                <i class="fa-brands fa-github text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="page-activity" class="page-section max-w-6xl mx-auto px-6 sm:px-8 py-8 hidden animate-fadeIn">
+            <!-- Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="px-4 py-1 rounded-full bg-blue-950/70 border border-blue-600/40 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                    Experience & Training
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4 tracking-tight">กิจกรรมและการเข้าอบรม</h2>
+                <p class="text-slate-400 text-sm mt-3">การพัฒนาตนเองอย่างต่อเนื่องผ่านเวิร์กชอป การแข่งขัน และการสัมมนาทางเทคโนโลยี</p>
+            </div>
+
+            <!-- Activity Images Gallery -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- รูปภาพกิจกรรม 1 (เปลี่ยน src เป็นที่อยู่รูปภาพของคุณ เช่น Im/activity1.jpg หรือลิงก์ URL) -->
+                <div class="overflow-hidden rounded-2xl sm:rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover aspect-[4/3] group">
+                    <img src="Im/e1.jpg" 
+                         alt="กิจกรรม 1" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <!-- รูปภาพกิจกรรม 2 -->
+                <div class="overflow-hidden rounded-2xl sm:rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover aspect-[4/3] group">
+                    <img src="Im/e2.jpg"
+                          alt="กิจกรรม 2"
+                         class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <!-- รูปภาพกิจกรรม 3 -->
+                <div class="overflow-hidden rounded-2xl sm:rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover aspect-[4/3] group">
+                    <img src="Im/e3.jpg" 
+                         alt="กิจกรรม 3" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <!-- รูปภาพกิจกรรม 4 -->
+                <div class="overflow-hidden rounded-2xl sm:rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover aspect-[4/3] group">
+                    <img src="Im/e4.jpg" 
+                         alt="กิจกรรม 4" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <!-- รูปภาพกิจกรรม 5 -->
+                <div class="overflow-hidden rounded-2xl sm:rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/60 transition-all glow-hover aspect-[4/3] group">
+                    <img src="Im/e5.jpg" 
+                         alt="กิจกรรม 5" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+
+            
+
+            </div>
+        </section>
+
+        <section id="page-contact" class="page-section max-w-6xl mx-auto px-6 sm:px-8 py-8 hidden animate-fadeIn">
+            <!-- Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="px-4 py-1 rounded-full bg-blue-950/70 border border-blue-600/40 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                    Contact Information
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4 tracking-tight">ช่องทางการติดต่อ</h2>
+                <p class="text-slate-400 text-sm mt-3">ยินดีพูดคุย ปรึกษาโครงการ พัฒนาระบบ หรือร่วมงานกัน ติดต่อได้ตลอดเวลาครับ</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Contact Information Details -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="p-6 rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/50 transition-all flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">อีเมล (Email)</span>
+                            <p class="text-sm font-semibold text-white mt-0.5 select-all">67011213137@msu.ac.th</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/50 transition-all flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">เบอร์โทรศัพท์ (Phone)</span>
+                            <p class="text-sm font-semibold text-white mt-0.5 select-all">0620451870</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/50 transition-all flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-brands fa-line"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Line Official / ID</span>
+                            <p class="text-sm font-semibold text-white mt-0.5 select-all">monloj</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-[#091124] border border-blue-900/50 hover:border-blue-500/50 transition-all flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">ที่อยู่ / พื้นที่ทำงาน (Location)</span>
+                            <p class="text-sm font-semibold text-white mt-0.5">137/10 บ้านนาทม ตำบลภูเงิน อำเภอเสลภูมิ จังหวัดร้อยเอ็ด 45120</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="pt-3 flex space-x-3">
+                        <a href="https://github.com/pudtipung" target="_blank" class="flex-1 py-3 bg-[#091124] hover:bg-blue-600/20 border border-blue-900/60 hover:border-blue-500 rounded-2xl text-center text-sm text-slate-300 hover:text-white transition-all">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                    
+                        </a>
+                        <a href="https://www.facebook.com/share/1YE3HmopsZ/" target="_blank" class="flex-1 py-3 bg-[#091124] hover:bg-blue-600/20 border border-blue-900/60 hover:border-blue-500 rounded-2xl text-center text-sm text-slate-300 hover:text-white transition-all">
+                            <i class="fa-brands fa-facebook text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Message Form -->
+                <div class="lg:col-span-7 p-8 rounded-3xl bg-[#091124] border border-blue-900/50 shadow-xl relative overflow-hidden">
+                    <h3 class="text-xl font-bold text-white mb-2">ส่งข้อความติดต่อ</h3>
+                    <p class="text-xs text-slate-400 mb-6">กรอกข้อมูลด้านล่างเพื่อติดต่อสอบถามหรือส่งข้อเสนอการทำงาน</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">ชื่อ-นามสกุลของคุณ <span class="text-cyan-400">*</span></label>
+                                <input type="text" required placeholder="เช่น สมชาย ใจดี" class="w-full px-4 py-3 rounded-2xl bg-[#050914] border border-blue-900/60 focus:border-blue-500 focus:outline-none text-sm text-white placeholder-slate-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">อีเมลสำหรับติดต่อกลับ <span class="text-cyan-400">*</span></label>
+                                <input type="email" required placeholder="somchai@example.com" class="w-full px-4 py-3 rounded-2xl bg-[#050914] border border-blue-900/60 focus:border-blue-500 focus:outline-none text-sm text-white placeholder-slate-500 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1.5">หัวข้อเรื่องที่ต้องการติดต่อ</label>
+                            <input type="text" required placeholder="เช่น ปรึกษาโปรเจกต์เว็บ, ติดต่องานประจำ" class="w-full px-4 py-3 rounded-2xl bg-[#050914] border border-blue-900/60 focus:border-blue-500 focus:outline-none text-sm text-white placeholder-slate-500 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1.5">รายละเอียดข้อความ <span class="text-cyan-400">*</span></label>
+                            <textarea rows="4" required placeholder="พิมพ์ข้อความของคุณที่นี่..." class="w-full px-4 py-3 rounded-2xl bg-[#050914] border border-blue-900/60 focus:border-blue-500 focus:outline-none text-sm text-white placeholder-slate-500 transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                            <span>ส่งข้อความตอนนี้</span>
+                        </button>
+                    </form>
+
+                    <!-- Success Alert Box -->
+                    <div id="contact-alert" class="hidden mt-4 p-4 rounded-2xl bg-blue-950/80 border border-blue-500/60 text-center animate-fadeIn">
+                        <i class="fa-solid fa-circle-check text-cyan-400 text-lg mb-1"></i>
+                        <p class="text-xs font-semibold text-white">ส่งข้อความเรียบร้อยแล้ว!</p>
+                        <p class="text-[11px] text-slate-300 mt-0.5">ขอบคุณที่ติดต่อเข้ามา ผมจะติดต่อกลับโดยเร็วที่สุดครับ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#03060f] border-t border-blue-950/80 pt-12 pb-8 mt-auto relative">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-blue-900/30">
+                <!-- Brand Info in Footer -->
+                <div class="flex items-center space-x-3 text-center md:text-left">
+                    <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white shadow-md shadow-blue-600/30">
+                        P
+                    </div>
+                    <div>
+                        <span class="text-base font-bold text-white">พุฒิพงศ์ มูลชารี (ม่อน)</span>
+                        <p class="text-xs text-blue-400">Professional Software Engineer & Designer</p>
+                    </div>
+                </div>
+
+                <!-- Footer Quick Nav -->
+                <div class="flex flex-wrap justify-center gap-4 text-xs font-medium text-slate-400">
+                    <button onclick="switchPage('home')" class="hover:text-blue-400 transition-colors">หน้าแรก</button>
+                    <button onclick="switchPage('education')" class="hover:text-blue-400 transition-colors">ประวัติการศึกษา</button>
+                    <button onclick="switchPage('portfolio')" class="hover:text-blue-400 transition-colors">ผลงาน</button>
+                    <button onclick="switchPage('activity')" class="hover:text-blue-400 transition-colors">กิจกรรม</button>
+                    <button onclick="switchPage('contact')" class="hover:text-blue-400 transition-colors">ติดต่อเรา</button>
+                </div>
+
+                <!-- Social links -->
+                <div class="flex space-x-2 text-slate-400">
+                    <a href="https://github.com/pudtipung" target="_blank" class="w-9 h-9 rounded-xl bg-blue-950/50 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all text-sm border border-blue-900/40">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=67011213137@msu.ac.th" target="_blank"" class="w-9 h-9 rounded-xl bg-blue-950/50 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all text-sm border border-blue-900/40">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copyright and Back to Top -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>&copy; <span id="current-year"></span> สงวนลิขสิทธิ์ทั้งหมด. ออกแบบและพัฒนาด้วย Tailwind CSS & Deep Blue Dark Theme</p>
+                <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="inline-flex items-center space-x-1.5 text-blue-400 hover:text-cyan-300 transition-colors">
+                    <span>กลับขึ้นด้านบน</span>
+                    <i class="fa-solid fa-arrow-up text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        let currentPageId = 'home';
+        let isSwitching = false;
+
+        // Single Page Router Logic with Loading Animation & Smooth Transitions
+        function switchPage(pageId, isInitial = false) {
+            const targetSection = document.getElementById('page-' + pageId);
+            if (!targetSection) return;
+
+            // If clicking the current page and not initial load, smoothly scroll to top
+            if (!isInitial && pageId === currentPageId) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            // Prevent spam clicking while animation is running
+            if (isSwitching) return;
+
+            // Update Desktop Navbar Active Pills immediately for responsive feedback
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                if (btn.getAttribute('data-target') === pageId) {
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30');
+                    btn.classList.remove('text-slate-300', 'hover:bg-blue-600/20');
+                } else {
+                    btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-600/30');
+                    btn.classList.add('text-slate-300', 'hover:bg-blue-600/20');
+                }
+            });
+
+            // Update Mobile Drawer Navigation Active Pills
+            const mobileNavButtons = document.querySelectorAll('.mobile-nav-btn');
+            mobileNavButtons.forEach(btn => {
+                if (btn.getAttribute('data-target') === pageId) {
+                    btn.classList.add('bg-blue-600/30', 'text-cyan-300', 'border', 'border-blue-500/30');
+                    btn.classList.remove('text-slate-200');
+                } else {
+                    btn.classList.remove('bg-blue-600/30', 'text-cyan-300', 'border', 'border-blue-500/30');
+                    btn.classList.add('text-slate-200');
+                }
+            });
+
+            // On initial page load: show page instantly with gentle fade-in
+            if (isInitial) {
+                const sections = document.querySelectorAll('.page-section');
+                sections.forEach(sec => sec.classList.add('hidden'));
+                targetSection.classList.remove('hidden');
+                targetSection.classList.add('page-fade-in');
+                currentPageId = pageId;
+                if (window.location.hash !== '#' + pageId) {
+                    history.replaceState(null, '', '#' + pageId);
+                }
+                return;
+            }
+
+            isSwitching = true;
+            const loaderOverlay = document.getElementById('page-loader');
+            const topLoader = document.getElementById('top-loader');
+            const currentSection = document.getElementById('page-' + currentPageId);
+
+            // Phase 1: Show top progress bar and loading overlay, fade out current page
+            if (topLoader) {
+                topLoader.style.width = '0%';
+                topLoader.classList.remove('opacity-0');
+                void topLoader.offsetWidth; // Force reflow
+                topLoader.style.width = '70%';
+            }
+
+            if (loaderOverlay) {
+                loaderOverlay.classList.remove('opacity-0');
+            }
+
+            if (currentSection) {
+                currentSection.classList.remove('page-fade-in');
+                currentSection.classList.add('page-fade-out');
+            }
+
+            // Phase 2: Switch page after loading duration (~280ms)
+            setTimeout(() => {
+                if (topLoader) {
+                    topLoader.style.width = '100%';
+                }
+
+                // Hide all sections and reset transition classes
+                const sections = document.querySelectorAll('.page-section');
+                sections.forEach(sec => {
+                    sec.classList.add('hidden');
+                    sec.classList.remove('page-fade-out', 'page-fade-in');
+                });
+
+                // Display target section and scroll to top
+                targetSection.classList.remove('hidden');
+                void targetSection.offsetWidth; // Force reflow to re-trigger animation
+                targetSection.classList.add('page-fade-in');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+
+                // Update URL without triggering hashchange recursion
+                if (window.location.hash !== '#' + pageId) {
+                    history.pushState(null, '', '#' + pageId);
+                }
+                currentPageId = pageId;
+
+                // Phase 3: Fade out loading indicators smoothly (~180ms)
+                setTimeout(() => {
+                    if (loaderOverlay) {
+                        loaderOverlay.classList.add('opacity-0');
+                    }
+                    if (topLoader) {
+                        topLoader.classList.add('opacity-0');
+                        setTimeout(() => {
+                            topLoader.style.width = '0%';
+                        }, 300);
+                    }
+                    isSwitching = false;
+                }, 180);
+
+            }, 280);
+        }
+
+        // Toggle Mobile Menu Drawer
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Portfolio Category Filter Logic
+        function filterPortfolio(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Toggle category active styles
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-[#0a1428]', 'text-slate-400');
+            });
+
+            // Highlight selected button
+            event.target.classList.remove('bg-[#0a1428]', 'text-slate-400');
+            event.target.classList.add('bg-blue-600', 'text-white');
+
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Handle Contact Form Submit with Animation
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const alertBox = document.getElementById('contact-alert');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-xs"></i><span>กำลังส่งข้อมูล...</span>';
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane text-xs"></i><span>ส่งข้อความตอนนี้</span>';
+                alertBox.classList.remove('hidden');
+                event.target.reset();
+
+                setTimeout(() => {
+                    alertBox.classList.add('hidden');
+                }, 5000);
+            }, 800);
+        }
+
+        // On Page Load: Read hash route
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            const validPages = ['home', 'education', 'portfolio', 'activity', 'contact'];
+            if (validPages.includes(hash)) {
+                switchPage(hash, true);
+            } else {
+                switchPage('home', true);
+            }
+        });
+
+        // Listen to browser Back/Forward buttons
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            const validPages = ['home', 'education', 'portfolio', 'activity', 'contact'];
+            if (validPages.includes(hash) && hash !== currentPageId && !isSwitching) {
+                switchPage(hash);
+            }
+        });
+    </script>
+</body>
+</html>
